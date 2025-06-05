@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>I Love You</title>
+  <style>
+    /* Background retro & soft */
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ffd6ec, #ffe6f2);
+      font-family: 'Comic Sans MS', 'Poppins', cursive;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Animasi ketik teks */
+    .typing {
+      font-size: 2em;
+      color: #ff4d88;
+      border-right: 2px solid #ff4d88;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      animation: typing 3s steps(20, end) forwards, blink 0.7s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 12ch }
+    }
+
+    @keyframes blink {
+      50% { border-color: transparent }
+    }
+
+    /* Tombol aesthetic */
+    button {
+      margin-top: 30px;
+      padding: 12px 24px;
+      font-size: 1.2em;
+      background-color: #ff99cc;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #ff66b2;
+      transform: scale(1.05);
+    }
+
+    /* Love jatuh */
+    .heart {
+      position: fixed;
+      top: -20px;
+      font-size: 24px;
+      color: #ff4d88;
+      animation: fall 3s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="typing" id="typingText">I love you baby</div>
+  <button onclick="dropHearts()">click me 💘</button>
+
+  <script>
+    function dropHearts() {
+      for (let i = 0; i < 30; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.innerText = '💖';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.fontSize = (Math.random() * 10 + 20) + 'px';
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+          heart.remove();
+        }, 3000);
+      }
+    }
+  </script>
+</body>
+</html>
